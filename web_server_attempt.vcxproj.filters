@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\user">
+      <UniqueIdentifier>{421f3aa9-d69f-49c7-8a36-ee237548af2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\group">
+      <UniqueIdentifier>{d184a384-681a-457c-b88c-a86684ae111b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\list">
+      <UniqueIdentifier>{3fe95548-216d-4f0b-a1f7-6e76237f1ddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\server_socket">
+      <UniqueIdentifier>{c6154bcb-f064-48f3-860c-0dd678c94053}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\user_manager">
+      <UniqueIdentifier>{9febc3e3-e54f-4f6e-a5a9-4cf88555ad56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\request_data">
+      <UniqueIdentifier>{a73506d4-b7a9-41be-be21-5199d49256c4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="user.cpp">
+      <Filter>Исходные файлы\user</Filter>
+    </ClCompile>
+    <ClCompile Include="group.cpp">
+      <Filter>Исходные файлы\group</Filter>
+    </ClCompile>
+    <ClCompile Include="server_socket.cpp">
+      <Filter>Исходные файлы\server_socket</Filter>
+    </ClCompile>
+    <ClCompile Include="user_manager.cpp">
+      <Filter>Исходные файлы\user_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="request_data.cpp">
+      <Filter>Исходные файлы\request_data</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="user.h">
+      <Filter>Исходные файлы\user</Filter>
+    </ClInclude>
+    <ClInclude Include="group.h">
+      <Filter>Исходные файлы\group</Filter>
+    </ClInclude>
+    <ClInclude Include="list.h">
+      <Filter>Исходные файлы\list</Filter>
+    </ClInclude>
+    <ClInclude Include="server_socket.h">
+      <Filter>Исходные файлы\server_socket</Filter>
+    </ClInclude>
+    <ClInclude Include="user_manager.h">
+      <Filter>Исходные файлы\user_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="request_data.h">
+      <Filter>Исходные файлы\request_data</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

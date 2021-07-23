@@ -1,0 +1,2 @@
+C:\Users\User\Desktop\web_server_attempt\Debug\web_server_attempt.exe
+C:\Users\User\Desktop\web_server_attempt\Debug\web_server_attempt.pdb
