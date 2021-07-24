@@ -15,7 +15,6 @@ class user_manager
 {
 private:
 	list<group> groups;
-	//list<user> non_auth_users;
 
 	server_socket& socket_obj;
 
@@ -26,6 +25,7 @@ public:
 
 	group* get_group(const std::string& _name) const noexcept;
 	group* create_group(const std::string& _name, const std::string& _password) noexcept;
+
 	std::string get_group_list() const noexcept;
 	const server_socket& get_socket() const noexcept;
 };

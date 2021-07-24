@@ -1,0 +1,29 @@
+﻿  group.cpp
+C:\Users\User\Desktop\web_server\group.cpp(78,13): warning C4018: >=: несоответствие типов со знаком и без знака
+  list_exception.cpp
+  main.cpp
+  request_data.cpp
+C:\Users\User\Desktop\web_server\request_data.cpp(86,23): warning C4018: <: несоответствие типов со знаком и без знака
+  server_socket.cpp
+  user.cpp
+  user_manager.cpp
+C:\Users\User\Desktop\web_server\list.h(184,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\User\Desktop\web_server\list.h(159): message : во время компиляции функции-члена класс шаблон "void list<group>::remove(unsigned int)"
+C:\Users\User\Desktop\web_server\user_manager.cpp(162): message : выполняется компиляция ссылки на экземпляр шаблон функции "void list<group>::remove(unsigned int)"
+C:\Users\User\Desktop\web_server\user_manager.h(17): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "list<group>"
+C:\Users\User\Desktop\web_server\list.h(208,20): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\User\Desktop\web_server\list.h(201): message : во время компиляции функции-члена класс шаблон "T &list<T>::operator [](unsigned int) const"
+          with
+          [
+              T=group
+          ]
+C:\Users\User\Desktop\web_server\user_manager.cpp(160): message : выполняется компиляция ссылки на экземпляр шаблон функции "T &list<T>::operator [](unsigned int) const"
+          with
+          [
+              T=group
+          ]
+  Создание кода
+  Previous IPDB not found, fall back to full compilation.
+  All 331 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  web_server_attempt.vcxproj -> C:\Users\User\Desktop\web_server\Release\web_server_attempt.exe

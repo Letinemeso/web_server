@@ -2,24 +2,7 @@
 #define __LIST
 
 #include <utility>
-
-class out_of_list_bounds_exception
-{
-public:
-	const char* what()
-	{
-		return "specified index is out of list bounds";
-	}
-};
-
-class list_is_empty_exception
-{
-public:
-	const char* what()
-	{
-		return "list is empty";
-	}
-};
+#include "list_exception.h"
 
 template <typename T>
 class list
@@ -34,7 +17,8 @@ class list
 	public:
 		node() = delete;
 
-		node(T& _data);
+		node(const T& _data);
+		node(T&& _data);
 
 		~node();
 	};
@@ -45,15 +29,15 @@ class list
 	unsigned int count = 0;
 
 public:
-	~list();
+	~list() noexcept;
 
 	void add_to_end(T&& _data) noexcept;
 
-	void add_to_end(T& _data) noexcept;
+	void add_to_end(T const& _data) noexcept;
 
 	void add_to_beginning(T&& _data) noexcept;
 
-	void add_to_beginning(T& _data) noexcept;
+	void add_to_beginning(T const& _data) noexcept;
 
 	void remove(unsigned int _index);
 
@@ -68,9 +52,14 @@ public:
 //node
 
 template<typename T>
-list<T>::node::node(T& _data)
+list<T>::node::node(const T& _data)
 {
-	//data = new T(_data);
+	data = new T(_data);
+}
+
+template<typename T>
+list<T>::node::node(T&& _data)
+{
 	data = new T(std::move(_data));
 }
 
@@ -102,12 +91,12 @@ void list<T>::add_to_end(T&& _data) noexcept
 {
 	if (first == nullptr)
 	{
-		first = new node(_data);
+		first = new node(std::move(_data));
 		last = first;
 	}
 	else
 	{
-		last->next = new node(_data);
+		last->next = new node(std::move(_data));
 		last->next->prev = last;
 		last = last->next;
 	}
@@ -116,7 +105,7 @@ void list<T>::add_to_end(T&& _data) noexcept
 }
 
 template<typename T>
-void list<T>::add_to_end(T& _data) noexcept
+void list<T>::add_to_end(T const& _data) noexcept
 {
 	if (first == nullptr)
 	{
@@ -150,10 +139,10 @@ void list<T>::add_to_beginning(T&& _data) noexcept
 }
 
 template<typename T>
-void list<T>::add_to_beginning(T& _data) noexcept
+void list<T>::add_to_beginning(T const& _data) noexcept
 {
 	node* temp = first;
-	first = new node(std::move(_data));
+	first = new node(_data);
 	first->next = temp;
 	first->next->prev = first;
 
@@ -170,11 +159,11 @@ void list<T>::remove(unsigned int _index)
 {
 	if (count == 0)
 	{
-		throw list_is_empty_exception();
+		throw list_exception("list is empty");
 	}
 	else if (_index >= count)
 	{
-		throw out_of_list_bounds_exception();
+		throw list_exception("out of list bounds");
 	}
 	else if (_index == 0)
 	{
@@ -212,7 +201,7 @@ T& list<T>::operator[](unsigned int _index) const
 {
 	if (_index >= count)
 	{
-		throw out_of_list_bounds_exception();
+		throw list_exception("out of list bounds");
 	}
 
 	node* searched_node = first;

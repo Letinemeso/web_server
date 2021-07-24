@@ -116,18 +116,3 @@ void user::send_message(const char* _message) const noexcept
 		std::cout << "error occured at ip adress " << *this << "\n\n";
 	}
 }
-
-//void user::connect() noexcept
-//{
-//	connected = true;
-//}
-//
-//void user::disconnect() noexcept
-//{
-//	connected = false;
-//}
-//
-//bool user::is_connected() const noexcept
-//{
-//	return connected;
-//}

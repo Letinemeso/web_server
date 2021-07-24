@@ -142,6 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="group.cpp" />
+    <ClCompile Include="list_exception.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="request_data.cpp" />
     <ClCompile Include="server_socket.cpp" />
@@ -151,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="group.h" />
     <ClInclude Include="list.h" />
+    <ClInclude Include="list_exception.h" />
     <ClInclude Include="request_data.h" />
     <ClInclude Include="server_socket.h" />
     <ClInclude Include="user.h" />

@@ -31,6 +31,9 @@
     <Filter Include="Исходные файлы\request_data">
       <UniqueIdentifier>{a73506d4-b7a9-41be-be21-5199d49256c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\list\list_exception">
+      <UniqueIdentifier>{41c0a9dd-ca58-4f4d-8ddb-547656956a14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,6 +54,9 @@
     <ClCompile Include="request_data.cpp">
       <Filter>Исходные файлы\request_data</Filter>
     </ClCompile>
+    <ClCompile Include="list_exception.cpp">
+      <Filter>Исходные файлы\list\list_exception</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user.h">
@@ -70,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="request_data.h">
       <Filter>Исходные файлы\request_data</Filter>
+    </ClInclude>
+    <ClInclude Include="list_exception.h">
+      <Filter>Исходные файлы\list\list_exception</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

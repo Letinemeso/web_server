@@ -18,7 +18,6 @@ class user
 private:
 	SOCKET client_socket;
 	char ip_addr[4];
-	bool connected = false;
 
 public:
 	user(SOCKET const& _client_socket, sockaddr_in const& _socket_data) noexcept;
@@ -35,9 +34,6 @@ public:
 	std::string get_message() const noexcept;
 	void send_message(const std::string& _message) const noexcept;
 	void send_message(const char* _message) const noexcept;
-	/*void connect() noexcept;
-	void disconnect() noexcept;
-	bool is_connected() const noexcept;*/
 };
 
 #endif

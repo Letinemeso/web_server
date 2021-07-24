@@ -42,12 +42,7 @@ int main()
 		{
 			break;
 		}
-	}
-
-
-	
-
-	
+	}	
 
 	WSACleanup();
 

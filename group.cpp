@@ -3,9 +3,9 @@
 
 
 group::group(const std::string& _name, const std::string& _password) noexcept
+	:name(_name), password(_password)
 {
-	name = _name;
-	password = _password;
+
 }
 
 
