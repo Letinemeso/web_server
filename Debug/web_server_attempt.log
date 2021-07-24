@@ -1,18 +1,17 @@
 ﻿  user_manager.cpp
-C:\Users\User\Desktop\web_server_attempt\user_manager.cpp(41,57): warning C4114: Множественное использование одного и того же квалификатора типа.
-C:\Users\User\Desktop\web_server_attempt\list.h(195,21): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\User\Desktop\web_server_attempt\list.h(170): message : во время компиляции функции-члена класс шаблон "void list<group>::remove(unsigned int)"
-C:\Users\User\Desktop\web_server_attempt\user_manager.cpp(169): message : выполняется компиляция ссылки на экземпляр шаблон функции "void list<group>::remove(unsigned int)"
-C:\Users\User\Desktop\web_server_attempt\user_manager.h(17): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "list<group>"
-C:\Users\User\Desktop\web_server_attempt\list.h(219,20): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\User\Desktop\web_server_attempt\list.h(212): message : во время компиляции функции-члена класс шаблон "T &list<T>::operator [](unsigned int) const"
+C:\Users\User\Desktop\web_server\list.h(195,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\User\Desktop\web_server\list.h(170): message : во время компиляции функции-члена класс шаблон "void list<group>::remove(unsigned int)"
+C:\Users\User\Desktop\web_server\user_manager.cpp(327): message : выполняется компиляция ссылки на экземпляр шаблон функции "void list<group>::remove(unsigned int)"
+C:\Users\User\Desktop\web_server\user_manager.h(17): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "list<group>"
+C:\Users\User\Desktop\web_server\list.h(219,20): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\User\Desktop\web_server\list.h(212): message : во время компиляции функции-члена класс шаблон "T &list<T>::operator [](unsigned int) const"
           with
           [
               T=group
           ]
-C:\Users\User\Desktop\web_server_attempt\user_manager.cpp(15): message : выполняется компиляция ссылки на экземпляр шаблон функции "T &list<T>::operator [](unsigned int) const"
+C:\Users\User\Desktop\web_server\user_manager.cpp(325): message : выполняется компиляция ссылки на экземпляр шаблон функции "T &list<T>::operator [](unsigned int) const"
           with
           [
               T=group
           ]
-  web_server_attempt.vcxproj -> C:\Users\User\Desktop\web_server_attempt\Debug\web_server_attempt.exe
+  web_server_attempt.vcxproj -> C:\Users\User\Desktop\web_server\Debug\web_server_attempt.exe

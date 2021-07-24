@@ -14,21 +14,21 @@ private:
 	std::string name;
 	std::string password;
 
+	int size = 5;
 	user* active_user[5] = { nullptr };
-	bool still_connected[5] = { false };
 
 public:
 	group(const std::string& _name, const std::string& _password) noexcept;
 	group() = delete;
 	
-	void connect_user(SOCKET const& _client_socket, sockaddr_in const& _socket_data) noexcept;
-	void connect_user(user& _user) noexcept;
-	void disconnect_user(int _index);
-	friend void listen_to_client(group* _group, int _index);
+	bool connect_user(user* _user) noexcept;
+	user* disconnect_user(int _index);
 
 	bool is_empty() const noexcept;
 	const std::string& get_name() const noexcept;
 	const std::string& get_password() const noexcept;
+	int get_size() const noexcept;
+	const user* const get_user(unsigned int _index) const;
 };
 
 #endif

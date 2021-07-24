@@ -17,34 +17,27 @@ class user
 {
 private:
 	SOCKET client_socket;
-	
 	char ip_addr[4];
+	bool connected = false;
 
 public:
 	user(SOCKET const& _client_socket, sockaddr_in const& _socket_data) noexcept;
+	user(user&& _user) noexcept;
+	~user() noexcept;
 
 	user(user const& _user) = delete;
 
-	user(user&& _user) noexcept;
-
-	~user() noexcept;
-
-
-
 	bool operator==(const user& _user) const noexcept;
-
 	bool operator!=(const user& _user) const noexcept;
-
 	friend std::ostream& operator<<(std::ostream& _stream, user const& _user);
 
 	bool is_invalid() const noexcept;
-
-
-
-
 	std::string get_message() const noexcept;
-
 	void send_message(const std::string& _message) const noexcept;
+	void send_message(const char* _message) const noexcept;
+	/*void connect() noexcept;
+	void disconnect() noexcept;
+	bool is_connected() const noexcept;*/
 };
 
 #endif

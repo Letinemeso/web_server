@@ -81,7 +81,7 @@ bool user::is_invalid() const noexcept
 std::string user::get_message() const noexcept
 {
 	int size;
-	char buffer[MAX_MESSAGE_LENGTH];
+	char buffer[MAX_MESSAGE_LENGTH + 1];
 
 	size = recv(client_socket, buffer, MAX_MESSAGE_LENGTH, 0);
 
@@ -106,3 +106,28 @@ void user::send_message(const std::string& _message) const noexcept
 		std::cout << "error occured at ip adress " << *this << "\n\n";
 	}
 }
+
+void user::send_message(const char* _message) const noexcept
+{
+	int send_result = send(client_socket, _message, strlen(_message), 0);
+
+	if (send_result == SOCKET_ERROR)
+	{
+		std::cout << "error occured at ip adress " << *this << "\n\n";
+	}
+}
+
+//void user::connect() noexcept
+//{
+//	connected = true;
+//}
+//
+//void user::disconnect() noexcept
+//{
+//	connected = false;
+//}
+//
+//bool user::is_connected() const noexcept
+//{
+//	return connected;
+//}

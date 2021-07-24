@@ -3,6 +3,7 @@
 
 #include <string>
 
+#define NOT_A_COMMAND ""
 #define NEW_GROUP "new"
 #define CONNECT_TO_GROUP "connect"
 #define GET_LIST "list"

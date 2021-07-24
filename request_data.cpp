@@ -71,8 +71,16 @@ void request_data::parse_connect(const std::string& _request) noexcept	//fills "
 
 }
 
+
+
 request_data::request_data(const std::string& _request) noexcept
 {
+	if (_request[0] != '/')
+	{
+		command = NOT_A_COMMAND;
+		return;
+	}
+
 	int offset = 1, size = 0;
 	
 	while (offset + size < _request.size())
