@@ -4,6 +4,26 @@
 
 std::mutex group_mutex;
 
+//utility
+
+std::string create_response_string(const char* const _command, const char* const _status, const char* const _comment)
+{
+	std::string return_value = "/";
+	return_value += (unsigned char)(strlen(_command));
+	return_value += _command;
+	return_value += '&';
+	return_value += (unsigned char)(strlen(_status));
+	return_value += _status;
+	return_value += '&';
+	if (_comment != nullptr)
+	{
+		return_value += (unsigned char)(strlen(_comment));
+		return_value += _comment;
+	}
+	
+	return return_value;
+}
+
 //functions for threads
 
 void listen_to_user(user_manager* _um, user* _user)
@@ -23,12 +43,12 @@ void listen_to_user(user_manager* _um, user* _user)
 				group_with_current_user = _um->create_group(request.get_name(), request.get_password());
 				if (group_with_current_user != nullptr)
 				{
-					_user->send_message("//success");
+					_user->send_message(create_response_string(request.get_command().c_str(), "success", nullptr));
 					group_with_current_user->connect_user(_user);
 				}
 				else
 				{
-					_user->send_message("//fail");
+					_user->send_message(create_response_string(request.get_command().c_str(), "fail", nullptr));
 				}
 			}
 			else if (request.get_command() == CONNECT_TO_GROUP)
@@ -38,12 +58,12 @@ void listen_to_user(user_manager* _um, user* _user)
 				{
 					if (group_with_current_user->get_password() == request.get_password())
 					{
-						_user->send_message("//success");
+						_user->send_message(create_response_string(request.get_command().c_str(), "success", nullptr));
 						group_with_current_user->connect_user(_user);
 					}
 					else
 					{
-						_user->send_message("//fail");
+						_user->send_message(create_response_string(request.get_command().c_str(), "fail", nullptr));
 						group_with_current_user = nullptr;
 					}
 				}
@@ -54,7 +74,7 @@ void listen_to_user(user_manager* _um, user* _user)
 			}
 			else if (request.get_command() == GET_LIST)
 			{
-				_user->send_message(_um->get_group_list());
+				_user->send_message(create_response_string(request.get_command().c_str(), "success", _um->get_group_list().c_str()));
 			}
 		}
 		else
@@ -83,7 +103,7 @@ void listen_to_user(user_manager* _um, user* _user)
 						break;
 					}
 				}
-				_user->send_message("//disconnected");
+				_user->send_message(create_response_string(request.get_command().c_str(), "success", nullptr));
 			}
 		}
 		
@@ -201,15 +221,18 @@ group* user_manager::create_group(const std::string& _name, const std::string& _
 
 std::string user_manager::get_group_list() const noexcept
 {
-	std::string return_value("//list");
+	std::string return_value;
 
 	group_mutex.lock();
+
+	return_value += (char)(groups.size());
 	for (int i = 0; i < groups.size(); ++i)
 	{
 		return_value += '&';
 		return_value += (char)(groups[i].get_name().size());
 		return_value += groups[i].get_name();
 	}
+
 	group_mutex.unlock();
 
 	return return_value;
