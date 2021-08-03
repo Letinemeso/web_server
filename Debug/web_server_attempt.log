@@ -1,7 +1,7 @@
 ﻿  user_manager.cpp
 C:\Users\User\Desktop\web_server\list.h(184,21): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\User\Desktop\web_server\list.h(159): message : во время компиляции функции-члена класс шаблон "void list<group>::remove(unsigned int)"
-C:\Users\User\Desktop\web_server\user_manager.cpp(163): message : выполняется компиляция ссылки на экземпляр шаблон функции "void list<group>::remove(unsigned int)"
+C:\Users\User\Desktop\web_server\user_manager.cpp(243): message : выполняется компиляция ссылки на экземпляр шаблон функции "void list<group>::remove(unsigned int)"
 C:\Users\User\Desktop\web_server\user_manager.h(17): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "list<group>"
 C:\Users\User\Desktop\web_server\list.h(208,20): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\User\Desktop\web_server\list.h(201): message : во время компиляции функции-члена класс шаблон "T &list<T>::operator [](unsigned int) const"
@@ -9,7 +9,7 @@ C:\Users\User\Desktop\web_server\list.h(201): message : во время комп
           [
               T=group
           ]
-C:\Users\User\Desktop\web_server\user_manager.cpp(161): message : выполняется компиляция ссылки на экземпляр шаблон функции "T &list<T>::operator [](unsigned int) const"
+C:\Users\User\Desktop\web_server\user_manager.cpp(241): message : выполняется компиляция ссылки на экземпляр шаблон функции "T &list<T>::operator [](unsigned int) const"
           with
           [
               T=group

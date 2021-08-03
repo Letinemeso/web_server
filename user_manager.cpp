@@ -8,7 +8,7 @@ std::mutex group_mutex;
 
 std::string create_response_string(const char* const _command, const char* const _status, const char* const _comment)
 {
-	std::string return_value = "/";
+	std::string return_value("/");
 	return_value += (unsigned char)(strlen(_command));
 	return_value += _command;
 	return_value += '&';
@@ -21,6 +21,21 @@ std::string create_response_string(const char* const _command, const char* const
 		return_value += _comment;
 	}
 	
+	return return_value;
+}
+std::string create_response_message_string(const std::string& _message)
+{
+	std::string return_value("/");
+	return_value += (unsigned char)(strlen("message"));
+	return_value += "message";
+	return_value += '&';
+	return_value += (unsigned char)(strlen("success"));
+	return_value += "success";
+	return_value += '&';
+	return_value += (char)((_message.size() / 128) == 0 ? 127 : (_message.size() / 128));
+	return_value += (char)((_message.size() % 128) == 0 ? 127 : (_message.size() % 128));
+	return_value += _message;
+
 	return return_value;
 }
 
@@ -43,12 +58,18 @@ void listen_to_user(user_manager* _um, user* _user)
 				group_with_current_user = _um->create_group(request.get_name(), request.get_password());
 				if (group_with_current_user != nullptr)
 				{
-					_user->send_message(create_response_string(request.get_command().c_str(), "success", nullptr));
+					_user->send_message(create_response_string
+					(
+						request.get_command().c_str(), "success", nullptr)
+					);
 					group_with_current_user->connect_user(_user);
 				}
 				else
 				{
-					_user->send_message(create_response_string(request.get_command().c_str(), "fail", nullptr));
+					_user->send_message(create_response_string
+					(
+						request.get_command().c_str(), "fail", nullptr)
+					);
 				}
 			}
 			else if (request.get_command() == CONNECT_TO_GROUP)
@@ -58,28 +79,65 @@ void listen_to_user(user_manager* _um, user* _user)
 				{
 					if (group_with_current_user->get_password() == request.get_password())
 					{
-						_user->send_message(create_response_string(request.get_command().c_str(), "success", nullptr));
-						group_with_current_user->connect_user(_user);
+						bool already_connected = false;
+
+						for (int i = 0; i < 5; ++i)
+						{
+							if (group_with_current_user->get_user(i) != nullptr)
+							{
+								if (*(group_with_current_user->get_user(i)) == *_user)
+								{
+									already_connected = true;
+									break;
+								}
+							}
+						}
+
+						if (already_connected)
+						{
+							_user->send_message(create_response_string
+							(
+								request.get_command().c_str(), "fail", nullptr)
+							);
+							group_with_current_user = nullptr;
+						}
+						else
+						{
+							_user->send_message(create_response_string
+							(
+								request.get_command().c_str(), "success", nullptr)
+							);
+							group_with_current_user->connect_user(_user);
+						}
 					}
 					else
 					{
-						_user->send_message(create_response_string(request.get_command().c_str(), "fail", nullptr));
+						_user->send_message
+						(
+							create_response_string(request.get_command().c_str(), "fail", nullptr)
+						);
 						group_with_current_user = nullptr;
 					}
 				}
 				else
 				{
-					_user->send_message("//fail");
+					_user->send_message(create_response_string
+					(
+						request.get_command().c_str(), "fail", nullptr)
+					);
 				}
 			}
 			else if (request.get_command() == GET_LIST)
 			{
-				_user->send_message(create_response_string(request.get_command().c_str(), "success", _um->get_group_list().c_str()));
+				_user->send_message(create_response_string
+				(
+					request.get_command().c_str(), "success", _um->get_group_list().c_str())
+				);
 			}
 		}
 		else
 		{
-			if (request.get_command() == NOT_A_COMMAND) 
+			if (request.get_command() == MESSAGE) 
 			{
 				for (int i = 0; i < group_with_current_user->get_size(); ++i)
 				{
@@ -87,7 +145,10 @@ void listen_to_user(user_manager* _um, user* _user)
 					{
 						if (*(group_with_current_user->get_user(i)) != *_user)
 						{
-							group_with_current_user->get_user(i)->send_message(message);
+							group_with_current_user->get_user(i)->send_message
+							(
+								create_response_message_string(request.get_message())
+							);
 						}
 					}
 				}

@@ -71,6 +71,26 @@ void request_data::parse_connect(const std::string& _request) noexcept	//fills "
 
 }
 
+void request_data::parse_message(const std::string& _request) noexcept
+{
+	int offset = 0;
+	while (_request[offset] != '&')
+	{
+		++offset;
+	}
+	++offset;
+
+	int size = 0;
+	size += (_request[offset] == 127 ? 0 : _request[offset]) * 128 + (_request[offset + 1] == 127 ? 0 : _request[offset + 1]);
+
+	message.reserve(size);
+	
+	for (int i = offset + 3; i < _request.size(); ++i)
+	{
+		message += _request[i];
+	}
+}
+
 
 
 request_data::request_data(const std::string& _request) noexcept
@@ -102,21 +122,25 @@ request_data::request_data(const std::string& _request) noexcept
 		command += _request[i];
 	}
 
-	if (command == "new")
+	if (command == NEW_GROUP)
 	{
 		parse_new(_request);
 	}
-	else if (command == "connect")
+	else if (command == CONNECT_TO_GROUP)
 	{
 		parse_connect(_request);
 	}
-	else if (command == "list")
+	else if (command == GET_LIST)
 	{
 		//nothing more to do here
 	}
-	else if (command == "disconnect")
+	else if (command == DISCONNECT)
 	{
 		//nothing more to do here
+	}
+	else if (command == MESSAGE)
+	{
+		parse_message(_request);
 	}
 
 }
@@ -141,4 +165,9 @@ const std::string& request_data::get_password() const noexcept
 const int request_data::get_group_size() const noexcept
 {
 	return group_size;
+}
+
+const std::string& request_data::get_message() const noexcept
+{
+	return message;
 }
