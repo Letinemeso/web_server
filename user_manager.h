@@ -23,6 +23,7 @@ public:
 
 	void remove_empty() noexcept;
 
+	unsigned int get_groups_count() const noexcept;
 	group* get_group(const std::string& _name) const noexcept;
 	group* create_group(const std::string& _name, const std::string& _password) noexcept;
 

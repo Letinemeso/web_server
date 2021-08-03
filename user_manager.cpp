@@ -60,16 +60,16 @@ void listen_to_user(user_manager* _um, user* _user)
 				{
 					_user->send_message(create_response_string
 					(
-						request.get_command().c_str(), "success", nullptr)
-					);
+						request.get_command().c_str(), "success", nullptr
+					));
 					group_with_current_user->connect_user(_user);
 				}
 				else
 				{
 					_user->send_message(create_response_string
 					(
-						request.get_command().c_str(), "fail", nullptr)
-					);
+						request.get_command().c_str(), "fail", nullptr
+					));
 				}
 			}
 			else if (request.get_command() == CONNECT_TO_GROUP)
@@ -97,16 +97,16 @@ void listen_to_user(user_manager* _um, user* _user)
 						{
 							_user->send_message(create_response_string
 							(
-								request.get_command().c_str(), "fail", nullptr)
-							);
+								request.get_command().c_str(), "fail", nullptr
+							));
 							group_with_current_user = nullptr;
 						}
 						else
 						{
 							_user->send_message(create_response_string
 							(
-								request.get_command().c_str(), "success", nullptr)
-							);
+								request.get_command().c_str(), "success", nullptr
+							));
 							group_with_current_user->connect_user(_user);
 						}
 					}
@@ -114,8 +114,8 @@ void listen_to_user(user_manager* _um, user* _user)
 					{
 						_user->send_message
 						(
-							create_response_string(request.get_command().c_str(), "fail", nullptr)
-						);
+							create_response_string(request.get_command().c_str(), "fail", nullptr
+						));
 						group_with_current_user = nullptr;
 					}
 				}
@@ -129,10 +129,18 @@ void listen_to_user(user_manager* _um, user* _user)
 			}
 			else if (request.get_command() == GET_LIST)
 			{
-				_user->send_message(create_response_string
-				(
-					request.get_command().c_str(), "success", _um->get_group_list().c_str())
-				);
+				if (_um->get_groups_count() == 0)
+				{
+					_user->send_message(create_response_string(
+						request.get_command().c_str(), "fail", nullptr
+					));
+				}
+				else
+				{
+					_user->send_message(create_response_string(
+						request.get_command().c_str(), "success", _um->get_group_list().c_str()
+					));
+				}
 			}
 		}
 		else
@@ -246,6 +254,11 @@ void user_manager::remove_empty() noexcept
 }
 
 
+
+unsigned int user_manager::get_groups_count() const noexcept
+{
+	return groups.size();
+}
 
 group* user_manager::get_group(const std::string& _name) const noexcept
 {
